@@ -9,7 +9,6 @@ app.use(express.json());
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
-// CREATE: Tambah item baru
 app.post('/items', async (req, res) => {
   const { nama_pemilik, jenis_sepatu, status = 'Diterima' } = req.body;
   if (!nama_pemilik || !jenis_sepatu) {
@@ -23,7 +22,6 @@ app.post('/items', async (req, res) => {
   res.status(201).json(data[0]);
 });
 
-// READ: Ambil semua items, dengan filter opsional ?status=...
 app.get('/items', async (req, res) => {
   const { status } = req.query;
   let query = supabase.from('items').select('*');
@@ -35,7 +33,6 @@ app.get('/items', async (req, res) => {
   res.json(data);
 });
 
-// READ: Ambil item berdasarkan ID
 app.get('/items/:id', async (req, res) => {
   const { id } = req.params;
   const { data, error } = await supabase
@@ -47,7 +44,6 @@ app.get('/items/:id', async (req, res) => {
   res.json(data);
 });
 
-// UPDATE: Update item berdasarkan ID
 app.put('/items/:id', async (req, res) => {
   const { id } = req.params;
   const updates = req.body;
@@ -61,7 +57,6 @@ app.put('/items/:id', async (req, res) => {
   res.json(data[0]);
 });
 
-// DELETE: Hapus item berdasarkan ID
 app.delete('/items/:id', async (req, res) => {
   const { id } = req.params;
   const { error } = await supabase
@@ -72,7 +67,6 @@ app.delete('/items/:id', async (req, res) => {
   res.json({ message: 'Item berhasil dihapus' });
 });
 
-// Health check
 app.get('/', (req, res) => {
   res.json({ message: 'API Layanan Cuci Sepatu siap digunakan!' });
 });
@@ -82,4 +76,5 @@ app.listen(PORT, () => {
   console.log(`Server berjalan di port ${PORT}`);
 });
 
-module.exports = app;  // Untuk Vercel
+
+module.exports = app;
