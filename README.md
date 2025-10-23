@@ -55,4 +55,4 @@ API yang dapat diakses publik via Vercel, dengan endpoint CRUD dan filter.
 5. Deploy ke Vercel: `vercel --prod`.
 
 ## Link Deploy (Vercel)
-[https://your-project.vercel.app](https://your-project.vercel.app) (ganti dengan link aktual setelah deploy).
+[https://your-project.vercel.app](https://shoe-wash-api-ten.vercel.app/items).
